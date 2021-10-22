@@ -20,6 +20,7 @@ public class Login extends AppCompatActivity {
 
     EditText username ,password;
     Button login;
+    private int PERMISSON_CODE =1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,13 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.Username);
         password = findViewById(R.id.Password);
         login = findViewById(R.id.Login);
+
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},PERMISSON_CODE );
+
+        }else {
+            finish();
+        }
 
 
         login.setOnClickListener(new View.OnClickListener() {

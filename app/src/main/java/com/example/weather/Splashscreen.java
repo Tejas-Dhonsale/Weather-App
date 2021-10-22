@@ -22,16 +22,16 @@ public class Splashscreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
                 startActivity(new Intent(Splashscreen.this,Login.class));
-
                 finish();
 
             }
-        },300);
+        },3000);
 
 
 
