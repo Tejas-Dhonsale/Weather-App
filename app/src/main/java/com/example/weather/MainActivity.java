@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Home = findViewById(R.id.home);
@@ -73,13 +73,12 @@ public class MainActivity extends AppCompatActivity {
         rvmodelArrayList = new ArrayList<>();
         rvAdapter = new RvAdapter(this, rvmodelArrayList);
         RecyclerView.setAdapter(rvAdapter);
-
-
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         //permission
 
-
+        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        }
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         cityName =getCityname(location.getLongitude(),location.getLatitude());
         getweatherinfo(cityName);

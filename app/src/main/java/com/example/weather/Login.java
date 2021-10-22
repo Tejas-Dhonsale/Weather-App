@@ -1,8 +1,14 @@
 package com.example.weather;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,6 +28,7 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.Username);
         password = findViewById(R.id.Password);
         login = findViewById(R.id.Login);
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
