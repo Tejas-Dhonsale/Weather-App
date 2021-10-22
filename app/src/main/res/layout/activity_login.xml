@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="350dp"
-        android:hint="Enter your username"
+        android:hint="Enter username"
         android:outlineProvider="background"
         android:outlineSpotShadowColor="@color/black"
         android:singleLine="true"
