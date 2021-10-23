@@ -31,13 +31,13 @@
             android:id="@+id/city_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="120dp"
             android:gravity="center"
             android:padding="20dp"
             android:text="City Name"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/linearlayout"
@@ -45,46 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/city_name"
             android:orientation="horizontal">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/TI_city"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Enter City Name"
-                android:padding="5dp"
-                android:layout_weight="4.5"
-                app:hintTextColor="@color/white"
-                android:textColorHint="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editcity"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/search"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="0.5"
-                android:background="@android:color/transparent"
-                android:clickable="true"
-                android:src="@drawable/ic_baseline_search_24"
-                app:tint="@color/white" />
-
         </LinearLayout>
 
         <TextView
@@ -93,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linearlayout"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
@@ -113,16 +73,18 @@
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
+            android:id="@+id/condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/condition"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:text="condition"
             android:layout_below="@id/Weathercon"
-            />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="condition"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
         <TextView
             android:id="@+id/message"
             android:layout_width="match_parent"
@@ -132,6 +94,7 @@
             android:text="Today's weather forcast"
             android:textColor="@color/white"
             android:textStyle="bold"
+            android:textSize="18sp"
             android:layout_above="@+id/recyclerview"/>
 
         <androidx.recyclerview.widget.RecyclerView

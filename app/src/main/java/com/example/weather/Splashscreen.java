@@ -16,8 +16,6 @@ import com.android.volley.Response;
 
 public class Splashscreen extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,12 +24,12 @@ public class Splashscreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 startActivity(new Intent(Splashscreen.this,Login.class));
                 finish();
-
             }
         },3000);
+
+
 
 
 

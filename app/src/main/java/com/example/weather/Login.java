@@ -1,5 +1,6 @@
 package com.example.weather;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -16,11 +17,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.security.Permission;
+
 public class Login extends AppCompatActivity {
 
     EditText username ,password;
     Button login;
-    private int PERMISSON_CODE =1;
+   private int PERMISSON_CODE = 1;
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSON_CODE){
+            if (grantResults.length > 0 && grantResults[0]==getPackageManager().PERMISSION_GRANTED) {
+                Toast.makeText(this,"Permisson Granted...",Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this,"Please provide the permisson",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +49,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.Password);
         login = findViewById(R.id.Login);
 
-        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},PERMISSON_CODE );
-
-        }else {
-            finish();
-        }
+        
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +74,10 @@ public class Login extends AppCompatActivity {
                 }else{
                     Toast.makeText(Login.this,"Check username and password",Toast.LENGTH_SHORT).show();
 
-
                 }
             }
         });
     }
+
+
 }

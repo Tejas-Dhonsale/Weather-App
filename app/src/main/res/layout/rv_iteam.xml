@@ -6,48 +6,49 @@
     android:layout_gravity="center"
     app:cardElevation="6dp"
     app:cardCornerRadius="10dp"
-    android:layout_margin="5dp">
+    android:layout_margin="4dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/card_background">
 
         <TextView
+            android:id="@+id/Tvtemp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Tvtemp"
             android:gravity="center"
             android:text="20"
             android:textAlignment="center"
-            android:textSize="20sp"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/Tvtime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Tvtime"
             android:gravity="center"
-            android:text="20"
+            android:text=""
+            android:layout_below="@+id/Tvtemp"
             android:textAlignment="center"
-            android:textSize="20sp"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <ImageView
             android:id="@+id/Tvcondition"
-            android:layout_width="40dp"
-            android:layout_height="48dp"
-            android:layout_below="@+id/Tvtemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Tvtime"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:padding="5dp"
-            android:src="@drawable/ic_launcher_background" />
+             />
 
 
 

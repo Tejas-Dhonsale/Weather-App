@@ -45,9 +45,9 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private RelativeLayout Home;
     private ProgressBar Pb;
-    private ImageView Background, Search, weathercon;
+    private ImageView Background, weathercon;
     private TextView City_name, Temp, Condition;
-    private TextInputEditText TI_city;
+  //  private TextInputEditText TI_city;
     private RecyclerView RecyclerView;
     private ArrayList<Rvmodel> rvmodelArrayList;
     private RvAdapter rvAdapter;
@@ -57,18 +57,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-     //   getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        //   getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Home = findViewById(R.id.home);
         Pb = findViewById(R.id.pb);
         Background = findViewById(R.id.background);
-        Search = findViewById(R.id.search);
+       // Search = findViewById(R.id.search);
         City_name = findViewById(R.id.city_name);
         Temp = findViewById(R.id.temp);
         Condition = findViewById(R.id.condition);
         weathercon = findViewById(R.id.Weathercon);
-        TI_city = findViewById(R.id.editcity);
+    //    TI_city = findViewById(R.id.editcity);
         RecyclerView = findViewById(R.id.recyclerview);
         rvmodelArrayList = new ArrayList<>();
         rvAdapter = new RvAdapter(this, rvmodelArrayList);
@@ -78,43 +78,26 @@ public class MainActivity extends AppCompatActivity {
         //permission
 
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         cityName =getCityname(location.getLongitude(),location.getLatitude());
         getweatherinfo(cityName);
 
-
-        Search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String city =TI_city.getText().toString();
-                if (city.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please enter city name", Toast.LENGTH_SHORT).show();
-                } else {
-                    TI_city.setText(cityName);
-                    getweatherinfo(city);
-                }
-            }
-        });
-
-
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSON_CODE){
-            if (grantResults.length > 0 && grantResults[0]==getPackageManager().PERMISSION_GRANTED) {
-                Toast.makeText(this,"Permisson Granted...",Toast.LENGTH_SHORT).show();
-            }else {
-                Toast.makeText(this,"Please provide the permisson",Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        }
-    }
+
 
     private String getCityname(double longitude, double latitude) {
-        String CityName = "Not Found";
-        Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+        Geocoder gcd = new Geocoder(getBaseContext(),Locale.getDefault());
         try {
             List<Address> addresses =gcd.getFromLocation(latitude,longitude,10);
 
@@ -125,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
                     if (city!=null && !city.equals("")){
                         cityName =city;
-                    }else{
-                        Toast.makeText(MainActivity.this,"City Not Found",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -137,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void getweatherinfo(String cityName){
-        String url = "http://api.weatherapi.com/v1/forecast.json?key=54d567be60f9406193653910212210&q="+ cityName +"&days=1&aqi=yes&alerts=yes";
+    private void getweatherinfo(String cityName) {
+        String url = "https://api.weatherapi.com/v1/forecast.json?key=54d567be60f9406193653910212210&q="+cityName+"=1&aqi=yes&alerts=yes";
         City_name.setText(cityName);
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
 
@@ -149,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 Pb.setVisibility(View.GONE);
                 Home.setVisibility(View.VISIBLE);
                 rvmodelArrayList.clear();
-
                 try {
                     String temperature = response.getJSONObject("current").getString("temp_c");
                     Temp.setText(temperature+"°c");
